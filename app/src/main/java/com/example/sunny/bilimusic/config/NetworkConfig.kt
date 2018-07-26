@@ -9,6 +9,6 @@ package com.example.sunny.bilimusic.config
  */
 object NetworkConfig {
 
-    const val server="https://api.douban.com/v2/music/"
+    const val server = "https://api.douban.com/v2/music/"
 
 }

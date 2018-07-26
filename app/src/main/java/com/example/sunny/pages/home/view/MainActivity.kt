@@ -1,5 +1,6 @@
 package com.example.sunny.pages.home.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -10,9 +11,14 @@ import com.example.sunny.bilimusic.toast
 import com.example.sunny.pages.home.SearchAdapter
 import com.example.sunny.pages.home.contract.HomeContract
 import com.example.sunny.pages.home.presenter.HomePresenter
+import com.example.sunny.pages.musicInfo.view.MusicInfoActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity(), HomeContract.IView, View.OnClickListener {
+class MainActivity :
+        BaseActivity(),
+        HomeContract.IView,
+        View.OnClickListener,
+        SearchAdapter.OnMusicClickListener {
 
     lateinit var presenter: HomePresenter
     lateinit var searchAdapter: SearchAdapter
@@ -45,6 +51,15 @@ class MainActivity : BaseActivity(), HomeContract.IView, View.OnClickListener {
         toast("$msg（-_-!!）")
     }
 
+    override fun itemClicked(position: Int) {
+        val musicId = searchAdapter.getItem(position).id
+
+        val intent2 = Intent(this, MusicInfoActivity::class.java)
+        intent2.putExtra("id", musicId)
+        startActivity(intent2)
+//        toast(musicId.toString())
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn -> {
@@ -59,6 +74,8 @@ class MainActivity : BaseActivity(), HomeContract.IView, View.OnClickListener {
 
     private fun configRv() {
         searchAdapter = SearchAdapter(this)
+        searchAdapter.setOnMusicClickListener(this)
+
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = searchAdapter
     }
