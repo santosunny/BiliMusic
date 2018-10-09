@@ -20,8 +20,8 @@ class MainActivity :
         View.OnClickListener,
         SearchAdapter.OnMusicClickListener {
 
-    lateinit var presenter: HomePresenter
-    lateinit var searchAdapter: SearchAdapter
+    private lateinit var presenter: HomePresenter
+    private lateinit var searchAdapter: SearchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +57,6 @@ class MainActivity :
         val intent2 = Intent(this, MusicInfoActivity::class.java)
         intent2.putExtra("id", musicId)
         startActivity(intent2)
-//        toast(musicId.toString())
     }
 
     override fun onClick(v: View?) {

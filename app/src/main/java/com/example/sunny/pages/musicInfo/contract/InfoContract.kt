@@ -1,5 +1,7 @@
 package com.example.sunny.pages.musicInfo.contract
 
+import com.example.sunny.bilimusic.bean.MusicInfo
+
 /**
  * Create on 18.7.13 0:02
  * <p>
@@ -10,7 +12,7 @@ package com.example.sunny.pages.musicInfo.contract
 interface InfoContract {
 
     interface IView {
-        fun showBgPic(url: String)
+        fun showInfo(musicInfo: MusicInfo)
         fun showErr(msg: String)
     }
 

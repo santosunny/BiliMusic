@@ -11,13 +11,6 @@ import retrofit2.Retrofit
  * Description:
  */
 object DataMgr {
-
     private var retrofit: Retrofit = NetUtil.getRetrofit()
-
-    var service: MusicService
-
-    init {
-        service = retrofit.create(MusicService::class.java)
-    }
-
+    var service = retrofit.create(MusicService::class.java)!!
 }

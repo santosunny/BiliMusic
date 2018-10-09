@@ -24,9 +24,8 @@ class InfoPresenter(val iView: InfoContract.IView) : InfoContract.IPresenter {
             }
 
             override fun onResponse(call: Call<MusicInfo>?, response: Response<MusicInfo>?) {
-                val musicInfo = response?.body()
-                val albumImg = musicInfo?.image
-                iView.showBgPic(albumImg!!)
+                val musicInfo = response?.body() ?: return
+                iView.showInfo(musicInfo)
             }
 
         })

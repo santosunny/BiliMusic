@@ -1,8 +1,10 @@
 package com.example.sunny.pages.musicInfo.view
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.sunny.bilimusic.R
+import com.example.sunny.bilimusic.bean.MusicInfo
 import com.example.sunny.bilimusic.loadImg
 import com.example.sunny.bilimusic.toast
 import com.example.sunny.pages.musicInfo.contract.InfoContract
@@ -29,8 +31,11 @@ class MusicInfoActivity : AppCompatActivity(), InfoContract.IView {
         presenter.loadMusicInfoData(musicId)
     }
 
-    override fun showBgPic(url: String) {
-        iv.loadImg(this, url)
+    @SuppressLint("SetTextI18n")
+    override fun showInfo(musicInfo: MusicInfo) {
+        iv.loadImg(this, musicInfo.image)
+        tvSinger.text = "歌手：" + musicInfo.alt_title
+        tvAlbum.text = "专辑：" + musicInfo.alt
     }
 
     override fun showErr(msg: String) {
